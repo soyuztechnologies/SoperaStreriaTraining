@@ -1,9 +1,9 @@
-@EndUserText.label: 'Service Definition for Managing Travel'
-define service ZI_TRAVEL_U_SD_XX {
-  expose ZI_TRAVEL_U_XX as Travel;
-  expose ZI_Agency_U_XX as TravelAgency;
-  expose ZI_CUSTOMER_U_XX as Passenger;
-  expose I_Currency as Currency;
-  expose I_Country as Country;
-}
 
+@EndUserText.label: 'travel service def for unmanaged scenario'
+define service Zats_00_sd_u_travel {
+  expose ZATS_00_C_U_TRAVEL as Travel;
+  expose ZATS_00_I_U_CUSTOMER as Customer;
+  expose ZATS_00_I_U_agency as TravelAgency;
+  expose I_Currency;
+  expose I_Country;
+}

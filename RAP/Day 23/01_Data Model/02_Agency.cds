@@ -1,22 +1,21 @@
-@AbapCatalog.sqlViewName: 'ZAGENCY_URP'
+@AbapCatalog.sqlViewName: 'ZATS00IUAGEN'
 @AbapCatalog.compiler.compareFilter: true
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
-@EndUserText.label: 'Agency view - CDS data model'
-define view ZI_Agency_U_XX
-  as select from /dmo/agency as Agency
-  association [0..1] to I_Country as _Country on $projection.CountryCode = _Country.Country
-{
-
-  key Agency.agency_id     as AgencyID,
-      Agency.name          as Name,
-      Agency.street        as Street,
-      Agency.postal_code   as PostalCode,
-      Agency.city          as City,
-      Agency.country_code  as CountryCode,
-      Agency.phone_number  as PhoneNumber,
-      Agency.email_address as EMailAddress,
-      Agency.web_address   as WebAddress,
-      _Country
-
+@EndUserText.label: 'Unmanaged Scenario Base Later- Agency Data'
+define view ZATS_00_I_U_agency as select from /dmo/agency
+association [1] to I_Country as _Country
+    on $projection.country_code = _Country.Country {
+    ///dmo/customer
+    ///dmo/agency
+    key agency_id as AgencyId,
+    name as AgencyName,
+    street as AStreet,
+    postal_code as APostalCode,
+    city as ACity,
+    country_code as ACountry,
+    phone_number as APhone,
+    email_address as AEmailAddress,
+    web_address as AWebAddress,
+    _Country // Make association public
 }

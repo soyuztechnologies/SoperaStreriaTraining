@@ -1,21 +1,21 @@
-@AbapCatalog.sqlViewName: 'ZCUSTOMER_UXX'
+@AbapCatalog.sqlViewName: 'ZATS00IUCUST'
 @AbapCatalog.compiler.compareFilter: true
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
-@EndUserText.label: 'Customer view - CDS Data Model'
-define view ZI_Customer_U_XX
-  as select from /dmo/customer as Customer
-  association [0..1] to I_Country as _Country on $projection.CountryCode = _Country.Country
-{
-  key Customer.customer_id   as CustomerID,
-      Customer.first_name    as FirstName,
-      Customer.last_name     as LastName,
-      Customer.title         as Title,
-      Customer.street        as Street,
-      Customer.postal_code   as PostalCode,
-      Customer.city          as City,
-      Customer.country_code  as CountryCode,
-      Customer.phone_number  as PhoneNumber,
-      Customer.email_address as EmailAddress,
-      _Country
+@EndUserText.label: 'Unmanaged Scenario Base Later- Customer Data'
+define view ZATS_00_I_U_CUSTOMER as select from /dmo/customer
+association [1] to I_Country as _Country
+    on $projection.country_code = _Country.Country {
+    ///dmo/customer
+    key customer_id as CustomerID,
+    first_name as FirstName,
+    last_name as LastName,
+    title as Title,
+    street as Street,
+    postal_code as PostalCode,
+    city as City,
+    country_code as CountryCd,
+    phone_number as PhoneNo,
+    email_address as EmailAddr,
+    _Country // Make association public
 }
